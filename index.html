@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LILEY</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: rgba(255, 182, 193, 0.443);
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            transition: opacity 0.5s ease-in-out;
+        }
+        h1, h2{
+            color: rgb(122, 122, 122); 
+        }
+        p {
+            color: rgb(122, 122, 122);
+            font-style: italic;
+            margin: 0 10%;
+            text-align: justify;
+        }
+        .container {
+            width: 90%;
+            position: relative;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .next-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgb(194, 22, 163);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+        .fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="Can't Help Falling In Love with You.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="container" id="first-section">
+        <h1 style="font-size: 50px; font-family: cursive;">Happy Valentines! Liley</h1>
+        <button class="next-button" onclick="transitionToNext(1)">Next</button>
+    </div>
+    
+    <div class="container hidden" id="second-section">
+        <img src="image1.JPEG" alt="Image 2">
+        <h2>"You Are My Everything"</h2>
+        <p>"I look at you and see everything I’ve ever wished for. You are the most beautiful person, 
+            not just in the way you look but in the way you love, care, and brighten the world around you. 
+            Every day with you feels like a dream I never want to wake up from."</p>
+        <button class="next-button" onclick="transitionToNext(2)">Next</button>
+    </div>
+    
+    <div class="container hidden" id="third-section">
+        <img src="image2.JPEG" alt="Image 3">
+        <h2>"The Love of My Life"</h2>
+        <p>"I don’t think you realize just how incredible you are. The way you love, the way you make people feel special, 
+            and the way your heart shines it's the most beautiful thing in the world. You are my greatest blessing, 
+            my safest place, and my forever love."</p>
+        <button class="next-button" onclick="transitionToNext(3)">Next</button>
+    </div>
+    
+    <div class="container hidden" id="fourth-section">
+        <img src="image3.JPEG" alt="Image 4">
+        <h2>"You Make My Heart Feel at Home"</h2>
+        <p>"With you, I’ve found the kind of love people write stories about. You are my heart’s favorite place, my greatest adventure, 
+            and my sweetest comfort. No matter where life takes us, as long as I have you, I have everything."</p>
+        <button class="next-button" onclick="transitionToNext(4)">Next</button>
+    </div>
+    
+    <div class="container hidden" id="fifth-section">
+        <video width="60%" autoplay muted loop>
+            <source src="liley.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h2>"The Most Beautiful Person to Me"</h2>
+        <p>"I may not always say it, but to me, you are the most beautiful person in the world. Not just in the way you look, but in the way you love, 
+            the way you care, and the way you make life so incredibly special. Every single day, I fall for you all over again, and I will never stop appreciating the amazing person that you are."</p>
+        <button class="next-button" onclick="goToNextPage()">Next</button>
+    </div>
+    
+    <script>
+        function transitionToNext(current) {
+            const audio = document.getElementById("bg-music");
+            audio.play().catch(error => {
+                console.log("Audio play failed: ", error);
+            });
+            
+            const currentSection = document.getElementById(`${ordinal(current)}-section`);
+            const nextSection = document.getElementById(`${ordinal(current + 1)}-section`);
+            
+            if (nextSection) {
+                currentSection.classList.add("fade-out");
+                setTimeout(() => {
+                    currentSection.classList.add("hidden");
+                    nextSection.classList.remove("hidden");
+                    nextSection.classList.add("fade-in");
+                }, 500);
+            }
+        }
+        
+        function ordinal(n) {
+            return ["first", "second", "third", "fourth", "fifth"][n - 1];
+        }
+        
+        function goToNextPage() {
+            window.location.href = "lian.html";
+        }
+    </script>
+</body>
+</html>
